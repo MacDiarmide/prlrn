@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+.css_input {
+color: yellow;
+background-color: red;
+}
+</style>
+
+<!-- Форма -->
+<form action="{% url 'thanks_page' %}" method="POST">
+  {% csrf_token %}
+  <!--<label>Имя</label>
+  <input name="name">
+  <label>Телефон</label>
+  <input name="phone">-->
+  {{ form.as_p }}  <!--as_p делает так, что поля формы располагаются друг под другом-->
+  <button type="submit">ОТПРАВИТЬ</button>
+</form>
+
+<!-- Список объектов QuerySet -->
+<h1>{{ list }}</h1>
+
+<!-- Список объектов QuerySet со всеми полями -->
+{% for obj in list %}
+<h2>{{ obj.id }}</h2>
+<h2>{{ obj.order_date }}</h2>
+<h2>{{ obj.order_name }}</h2>
+<h2>{{ obj.order_phone }}</h2>
+{% endfor %}
+
+<!-- Таблица объектов QuerySet со всеми полями -->
+{% if list %}
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Дата</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+    </tr>
+{% for obj in list %}
+    <tr>
+        <th>{{ obj.id }}</th>
+        <th>{{ obj.order_date }}</th>
+        <th>{{ obj.order_name }}</th>
+        <th>{{ obj.order_phone }}</th>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+Нет данных
+{% endif %}
+
+</body>
+</html>

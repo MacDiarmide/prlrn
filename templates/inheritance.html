@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Блок контента из inheritance</h2>
+<img src="{% static 'img\1.jpg' %}" height="300"
+{% include 'index_1.html' %}
+{% endblock %}
